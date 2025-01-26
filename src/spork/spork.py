@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-from .expression import Expression, Literal
+from .expression import Expression
 from .func_expr import FuncExpr
 from .types import FuncLabel
 
@@ -13,19 +13,11 @@ def col(c: Any) -> Expression:
     return Expression(lhs=c)
 
 
-def lit(value: Any) -> Literal:
+def lit(value: Any) -> Expression:
     """
-    Turns any passed value into a trivial literal expression.
-    If the value is already a Literal, it is returned as-is.
+    Turns any passed value into a trivial literal expression. A literal is simply an Expression with no operations.
     """
-    if isinstance(value, Literal):
-        return value
-    if isinstance(value, Expression):
-        raise ValueError(
-            "ERROR | This function should not be used on expressions; did you mean to use `Col`?"
-        )
-
-    return Literal(value)
+    return Expression(lhs=value)
 
 
 def row_number() -> FuncExpr:
@@ -33,7 +25,7 @@ def row_number() -> FuncExpr:
 
 
 def lag(
-    column: str, rows: Optional[int] = None, default_value: Optional[str] = None
+        column: str, rows: Optional[int] = None, default_value: Optional[str] = None
 ) -> FuncExpr:
     """
     Create a LAG function expression.

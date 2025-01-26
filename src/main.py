@@ -1,4 +1,4 @@
-from spork import col, lit, Query, Dataset, Join, Entity, lag
+from spork import col, lit, Query, lag
 
 from spork.query import Selection, Dataset, Entity, Join
 import spork.window as W
@@ -33,7 +33,7 @@ def main():
     )
 
     q = (
-        q._from(dataset)
+        q.fromm(dataset)
         .group_by("fqr.Thing", col("fqr.thang").cast("decimal"))
         .order_by(col("DescThis").desc())
     )

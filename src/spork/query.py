@@ -1,6 +1,6 @@
 from typing import Union, Optional, List
 
-from spork.types import InclusionType
+from spork.types import InclusionType, OrderingNulls
 from spork.expression import Expression
 from spork.entity import Entity
 
@@ -109,7 +109,7 @@ class Query:
         self.selection = selection
         return self
 
-    def _from(self, dataset: Dataset) -> "Query":
+    def fromm(self, dataset: Dataset) -> "Query":
         """
         Set the dataset (from clause) for the query.
         """

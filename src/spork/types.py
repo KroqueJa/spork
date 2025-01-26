@@ -9,14 +9,12 @@ class Op(Enum):
     This enum is used internally, and not intended to be exposed to end users.
     """
 
-    NOT = "~"
-    EQ = "=="
+    EQ = "="
     NEQ = "<>"
     LEQ = "<="
     GEQ = ">="
     LT = "<"
     GT = ">"
-    BETWEEN = "between"
     AND = "and"
     OR = "or"
     ADD = "+"
@@ -24,6 +22,20 @@ class Op(Enum):
     MUL = "*"
     DIV = "/"
     MOD = "%"
+
+    # Unary operators
+    NOT = "not"
+    IS_NOT_NULL = "is not null"
+    IS_NULL = "is null"
+
+    # Between
+    BETWEEN = "between"
+
+
+@unique
+class NullCheck(Enum):
+    IS_NOT_NULL = "is not null"
+    IS_NULL = "is null"
 
 
 @unique
@@ -40,10 +52,17 @@ class FuncLabel(Enum):
     LAG = "lag"
 
 
+# TODO: Create "Ordering" class to wrap both these enums
 @unique
 class Ordering(Enum):
     DESC = "desc"
     ASC = "asc"
+
+
+@unique
+class OrderingNulls(Enum):
+    NULLS_FIRST = "nulls first"
+    NULLS_LAST = "nulls last"
 
 
 @unique
